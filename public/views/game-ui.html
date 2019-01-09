@@ -16,7 +16,7 @@
         id="selfSleep"
         style="font-family: Sans-serif; font-weight: bold; font-size: 14px;width: fit-content; margin: auto; margin-top: 15%; color: red;"
       >
-        you turn!
+        your turn!
       </div>
     </div>
     <div class="other">
@@ -90,9 +90,7 @@
     });
 
     document.querySelector("#name").innerHTML = localStorage.getItem("name");
-    document.querySelector("#other").innerHTML = localStorage.getItem(
-      "player2"
-    );
+    document.querySelector("#other").innerHTML = localStorage.getItem("player2");
 
     var self = document.querySelector("#selfSleep");
     var other = document.querySelector("#otherSleep");
