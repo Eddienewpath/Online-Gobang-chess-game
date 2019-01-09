@@ -5,7 +5,7 @@ const app = express();                            ////////
 // app.set('view engine', 'hbs');                  /////////
 const server = require('http').createServer(app) /////////
 const io = require('socket.io').listen(server); /////////                                            /////////
-const port = process.env.NODE_ENV || 3000;
+const port = process.env.PORT || 3000;
 ////////////////////////////////////////////////////////
 const {isOwnerExisted, findPlayer,check_result, result, add_pieces, init_arr} = require('./util');
 //serving static files with a virtual /static directory in the front of url. 
