@@ -16,7 +16,7 @@
   <body>
     <iframe
       id="game"
-      src="index.html"
+      src="/views/index.html"
       width="100%"
       height="100%"
       scrolling="no"
@@ -45,7 +45,7 @@
       console.log(data.playerCount)
       localStorage.setItem("playerCount", data.playerCount);
       // location.href = './home.html'
-      game.src = "home.html"; // go to home.html if user logged in
+      game.src = "/views/home.html"; // go to home.html if user logged in
     }
   });
 
@@ -62,7 +62,7 @@
   socket.on("play", function(data) {
     localStorage.setItem("color", data.color);
     localStorage.setItem("player2", data.name);
-    game.src = "game-ui.html";
+    game.src = "/views/game-ui.html";
   });
 
   function clearPlay() {
@@ -85,6 +85,6 @@
   socket.on("result", function(data) {
     // game.contentWindow.result(data)
     alert(data);
-    game.src = "game-ui.html";
+    game.src = "/views/game-ui.html";
   });
 </script>

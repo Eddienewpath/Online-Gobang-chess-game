@@ -1,15 +1,18 @@
 ///////////expressjs and socket.io setup//////////////////
 const express = require('express');               ////////
-const app = express();                            ////////
+const app = express();   
+const serveStatic = require('serve-static')  
+const path = require('path');      ////////
 // const hbs = require('hbs'); //handlebar           ////////
 // app.set('view engine', 'hbs');                  /////////
 const server = require('http').createServer(app) /////////
-const io = require('socket.io').listen(server); /////////                                            /////////
-const port = process.env.PORT || 3000;
+const io = require('socket.io').listen(server); /////////                                            
+const port = process.env.PORT || 3000;         /////////
 ////////////////////////////////////////////////////////
 const {isOwnerExisted, findPlayer,check_result, result, add_pieces, init_arr} = require('./util');
 //serving static files with a virtual /static directory in the front of url. 
-app.use(express.static(__dirname + '/../views')); 
+// app.use(express.static(__dirname + '/public'));
+app.use(serveStatic(path.join(__dirname, '../public'), {'index': 'game.html'}))
 
 let playerCount = 0, gameCount = 0, players = [];
 
