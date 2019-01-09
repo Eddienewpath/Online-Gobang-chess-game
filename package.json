@@ -14,14 +14,5 @@
   "version": "1.0.0",
   "main": "server.js",
   "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dagger9527/gobang-online.git"
-  },
-  "bugs": {
-    "url": "https://github.com/dagger9527/gobang-online/issues"
-  },
-  "homepage": "https://github.com/dagger9527/gobang-online#readme",
-  "description": ""
+  "license": "ISC"
 }
