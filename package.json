@@ -1,14 +1,27 @@
 {
   "dependencies": {
-    "socket.io": "^2.1.1"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "8.9.4"
   },
   "name": "online-gobang",
   "version": "1.0.0",
   "main": "server.js",
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagger9527/gobang-online.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dagger9527/gobang-online/issues"
+  },
+  "homepage": "https://github.com/dagger9527/gobang-online#readme",
   "description": ""
 }

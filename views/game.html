@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chess</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+  </head>
+  <body>
+    <iframe
+      id="game"
+      src="index.html"
+      width="100%"
+      height="100%"
+      scrolling="no"
+    ></iframe>
+  </body>
+</html>
+<script>
+  //iframe tag is used to display a webpage within a webpage.
+  var game = document.querySelector("#game");
+  //#####################client side socket io setup #####################
+  var socket = io('http://localhost:3000'); //#######
+  //###################################################
+
+  function login(username) {
+    socket.emit("login", username); // send to server for validation
+  }
+
+  // user logged in
+  socket.on("home", function(data) {
+    //if username exists, flag is true and index.html flag element hidden property set to false will display message username exists
+    if (data.playerExisted) {
+      game.contentWindow.flag.hidden = false; // display "username exists"
+    } else {
+      game.contentWindow.flag.hidden = true;
+      localStorage.setItem("name", data.name);
+      console.log(data.playerCount)
+      localStorage.setItem("playerCount", data.playerCount);
+      // location.href = './home.html'
+      game.src = "home.html"; // go to home.html if user logged in
+    }
+  });
+
+  // not enough players to start the game
+  socket.on("players needed", function() {
+    game.contentWindow.flag.style.display = "block";
+    game.contentWindow.loader.hidden = true;
+  });
+
+  function play() {
+    socket.emit("play");
+  }
+
+  socket.on("play", function(data) {
+    localStorage.setItem("color", data.color);
+    localStorage.setItem("player2", data.name);
+    game.src = "game-ui.html";
+  });
+
+  function clearPlay() {
+    socket.emit("clearPlay");
+  }
+
+  function add_pieces(data) {
+    socket.emit("data", data);
+  }
+
+  socket.on("addPieces", function(data) {
+    game.contentWindow.add_pieces(data.position, data.color);
+    if (data.color === localStorage.getItem("color")) {
+      game.contentWindow.showSleep(true);
+    } else {
+      game.contentWindow.showSleep(false);
+    }
+  });
+
+  socket.on("result", function(data) {
+    // game.contentWindow.result(data)
+    alert(data);
+    game.src = "game-ui.html";
+  });
+</script>

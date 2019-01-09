@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chess</title>
+    <link rel="stylesheet/less" type="text/css" href="game-ui.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+  </head>
+  <body>
+    <canvas id="canvas" width="630" height="630"></canvas>
+    <div class="self">
+      <div class="top"></div>
+      <div class="name"><span>昵称:</span> <span id="name"></span></div>
+      <div
+        hidden
+        id="selfSleep"
+        style="font-family: 宋体; font-weight: bold; font-size: 14px;width: fit-content; margin: auto; margin-top: 15%; color: red;"
+      >
+        轮到你下了!
+      </div>
+    </div>
+    <div class="other">
+      <div class="top"></div>
+      <div class="name"><span>昵称:</span> <span id="other"></span></div>
+      <div
+        hidden
+        id="otherSleep"
+        style="font-family: 宋体; font-weight: bold; font-size: 14px;width: fit-content; margin: auto; margin-top: 15%; color: red;"
+      >
+        等待别人中...
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var canvas = document.querySelector("#canvas");
+    var context = canvas.getContext("2d");
+
+    var r = 30;
+    var edges = canvas.width;
+    var offset_w = 315;
+    var offset_h = 65;
+
+    init_canvas();
+// draw chess board
+    function init_canvas() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.strokeStyle = "#444444";
+
+      for (var i = 15; i <= edges; i += r) {
+        context.moveTo(15, i);
+        context.lineTo(edges - 15, i);
+        context.moveTo(i, 15);
+        context.lineTo(i, edges - 15);
+      }
+      context.stroke();
+    }
+// draw chess
+    function add_pieces(position, color) {
+      context.beginPath();
+      context.fillStyle = color;
+      context.arc(
+        position.x * r + 15,
+        position.y * r + 15,
+        r / 2 - 2,
+        0,
+        Math.PI * 2
+      );
+      context.closePath();
+      context.fill();
+    }
+
+    canvas.addEventListener("click", function(e) {
+      var x, y;
+      if ((e.clientX - offset_w) % 30 > 15) {
+        x = ~~((e.clientX - offset_w) / 30) + 1;
+      } else {
+        x = ~~((e.clientX - offset_w) / 30);
+      }
+
+      if ((e.clientY - offset_h) % 30 > 15) {
+        y = ~~((e.clientY - offset_h) / 30) + 1;
+      } else {
+        y = ~~((e.clientY - offset_h) / 30);
+      }
+      var position = {
+        x: x,
+        y: y
+      };
+      parent.add_pieces(position);
+    });
+
+    document.querySelector("#name").innerHTML = localStorage.getItem("name");
+    document.querySelector("#other").innerHTML = localStorage.getItem(
+      "player2"
+    );
+
+    var self = document.querySelector("#selfSleep");
+    var other = document.querySelector("#otherSleep");
+
+    if (localStorage.getItem("color") === "white") {
+      showSleep(false);
+    } else {
+      showSleep(true);
+    }
+
+    function showSleep(flag) {
+      self.hidden = flag;
+      other.hidden = !flag;
+    }
+  </script>
+</html>

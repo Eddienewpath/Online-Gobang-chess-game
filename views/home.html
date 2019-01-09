@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chess</title>
+    <link rel="stylesheet/less" type="text/css" href="homeStyle.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+  </head>
+  <body>
+    <!--<div id="layer" class="play">-->
+    <div class="loader" id="loader" hidden>
+      <figure>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+        <section><div></div></section>
+      </figure>
+      <input
+        onclick="clearPlay()"
+        type="button"
+        value="取消匹配"
+        style="background-color: aquamarine; border: 0; width: 100px; height: 40px; border-radius: 10px; font-size: 17px; display: block; margin: auto; margin-top: 7%;"
+      />
+    </div>
+    <!--</div>-->
+    <div class="container">
+      <div class="title">Five-Chess</div>
+      <div class="name">
+        <span>User Name:</span> <span id="name">sdfds</span> <br /><br />
+        <span>Active Players:</span> <span class="count" id="count"></span>
+      </div>
+      <span
+        id="flag"
+        style="width: fit-content;color: red; font-size: 17px; background-color: inherit;display: none;margin: auto;margin-top: 5%; cursor: pointer; z-index: 5;"
+        >waiting for other players...</span
+      >
+      <div class="button"><div onclick="play()">Match</div></div>
+    </div>
+  </body>
+</html>
+<script>
+  var username = document.querySelector("#name");
+  var count = document.querySelector("#count");
+  var loader = document.querySelector("#loader");
+  var flag = document.querySelector("#flag");
+
+  username.innerText = localStorage.getItem("name");
+  count.innerText = localStorage.getItem("playerCount");
+
+  function play() {
+    //loading effect 
+    loader.hidden = false;
+    //display nothing during play event emitted to server. 
+    flag.style.display = "none";
+
+    parent.play();
+  }
+
+  function clearPlay() {
+    loader.hidden = true;
+    parent.clearPlay();
+  }
+</script>

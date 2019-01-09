@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chess</title>
+    <link rel="stylesheet/less" type="text/css" href="indexStyle.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Five-chess</div>
+      <div class="username">
+        <label for="username">username:</label>
+        <input name="username" id="username" />
+      </div>
+      <span
+        id="flag"
+        hidden
+        style="color: red; font-size: 17px; background-color: inherit;"
+        >username exists</span
+      >
+      <div class="button"><div onclick="login()">start</div></div>
+    </div>
+  </body>
+</html>
+<script>
+  var username = document.getElementById("username");
+  var flag = document.getElementById("flag");
+
+  function login() {
+    if (username.value === undefined || username.value === "") {
+      return;
+    }
+    parent.login(username.value); //parent is game.html the parent window which is where login()defined
+  }
+</script>

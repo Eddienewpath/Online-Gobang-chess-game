@@ -1,0 +1,169 @@
+* {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    font-family: 宋体;
+  }
+
+  figure {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    background: transparent;
+    z-index: 4;
+    margin: auto;
+    margin-top: 3%;
+  }
+
+  section {
+    background-color: inherit;
+    z-index: 4;
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    left: 45%;
+  }
+
+  section:nth-child(2) {
+    transform: rotate(22.5deg);
+  }
+
+  section:nth-child(3) {
+    transform: rotate(45deg);
+  }
+
+  section:nth-child(4) {
+    transform: rotate(67.5deg);
+  }
+
+  section:nth-child(5) {
+    transform: rotate(90deg);
+  }
+
+  section:nth-child(6) {
+    transform: rotate(112.5deg);
+  }
+
+  section:nth-child(7) {
+    transform: rotate(135deg);
+  }
+
+  section:nth-child(8) {
+    transform: rotate(157.5deg);
+  }
+
+  figure div {
+    background-color: inherit;
+    height: 10%;
+    border-radius: 50%;
+    background: dodgerblue;
+    animation: move 1s ease-in-out infinite alternate;
+  }
+
+  figure > section:nth-child(1) > div {
+    animation-delay: -0.875s;
+  }
+
+  figure > section:nth-child(2) > div {
+    animation-delay: -0.75s;
+  }
+
+  figure > section:nth-child(3) > div {
+    animation-delay: -0.625s;
+  }
+
+  figure > section:nth-child(4) > div {
+    animation-delay: -0.5s;
+  }
+
+  figure > section:nth-child(5) > div {
+    animation-delay: -0.375s;
+  }
+
+  figure > section:nth-child(6) > div {
+    animation-delay: -0.25s;
+  }
+
+  figure > section:nth-child(7) > div {
+    animation-delay: -0.125s;
+  }
+
+  @keyframes move {
+    from {
+      transform: translate(0, 50%);
+    }
+    to {
+      transform: translate(0, 850%);
+    }
+  }
+
+  .loader {
+    width: 400px;
+    height: 300px;
+    background-color: rgba(230, 230, 230, 0.75);
+    position: absolute;
+    left: 37%;
+    top: 30%;
+    border-radius: 25px;
+    z-index: 3;
+  }
+
+  .container {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: #f6f8f3;
+    border-radius: 25px;
+    left: 37%;
+    top: 30%;
+    .title {
+      text-align: center;
+      width: 100%;
+      font-size: 40px;
+      color: #252bf4;
+      letter-spacing: 10px;
+      font-weight: bold;
+      background-color: inherit;
+      border-radius: 25px;
+      padding-top: 5%;
+    }
+    .button {
+      position: absolute;
+      background-color: inherit;
+      width: 100%;
+      bottom: 20px;
+      div {
+        border-radius: 10px;
+        margin: auto;
+        width: 100px;
+        height: 40px;
+        background-color: aquamarine;
+        line-height: 40px;
+        text-align: center;
+        &:hover {
+          background-color: aqua;
+          cursor: pointer;
+        }
+      }
+    }
+    .name {
+      background-color: inherit;
+      width: 100%;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      margin-top: 8%;
+      * {
+        background-color: inherit;
+      }
+      span:nth-child(1) {
+      }
+      #name {
+        color: red;
+      }
+      .count {
+
+      }
+    }
+  }
