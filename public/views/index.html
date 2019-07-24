@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="title">Five-chess</div>
+      <div class="title">Gobang</div>
       <div class="username">
         <label for="username">username:</label>
         <input name="username" id="username" />
@@ -26,11 +26,10 @@
 <script>
   var username = document.getElementById("username");
   var flag = document.getElementById("flag");
-
-  function login() {
+  var login = function(){
     if (username.value === undefined || username.value === "") {
       return;
     }
-    parent.login(username.value); //parent is game.html the parent window which is where login()defined
+    parent.login(username.value);
   }
 </script>
