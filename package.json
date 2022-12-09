@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "nodemon": "^1.18.9",
     "serve-static": "^1.13.2",
     "socket.io": "^2.2.0"
